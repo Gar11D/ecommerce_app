@@ -57,7 +57,7 @@ const getUserAccounts = (request, response) => {
   };
 
   const deleteUserAccount = (request, response) => {
-    const id = parseInt(request.params.id)
+    const id = parseInt(request.params.user_id)
   
     pool.query('DELETE FROM user_accounts WHERE user_id = $1', [id], (error, results) => {
       if (error) {
