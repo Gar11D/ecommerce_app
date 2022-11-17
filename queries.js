@@ -29,29 +29,29 @@ const getUserAccounts = (request, response) => {
     })
   };
 
-  // const createUserAccount = (request, response) => {
-  //   const { user_id, user_email} = request.body
+  const createUserAccount = (request, response) => {
+    const { user_id, user_email} = request.body
   
-  //   pool.query('INSERT INTO user_account (user_id, user_email) VALUES ($1, $2) RETURNING *', [user_id, user_email], (error, results) => {
-  //     if (error) {
-  //       throw error
-  //     }
-  //     response.status(201).send(`User added with ID: ${results.rows[0].user_id}`)
-  //   })
-  // };
+    pool.query('INSERT INTO user_accounts (user_id, user_email) VALUES ($1, $2) RETURNING *', [user_id, user_email], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).send(`User added with ID: ${results.rows[0].user_id}`)
+    })
+  };
 
   // const updateUserAccount = (request, response) => {
-  //   const id = parseInt(request.params.id)
-  //   const { name, email } = request.body
+  //   const user_id = parseInt(request.params.id)
+  //   const { user_email } = request.body
   
   //   pool.query(
-  //     'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-  //     [name, email, id],
+  //     'UPDATE users SET user_email = $1, WHERE id = $2',
+  //     [user_email, user_id],
   //     (error, results) => {
   //       if (error) {
   //         throw error
   //       }
-  //       response.status(200).send(`User modified with ID: ${id}`)
+  //       response.status(200).send(`User modified with ID: ${user_id}`)
   //     }
   //   )
   // };
@@ -70,7 +70,7 @@ const getUserAccounts = (request, response) => {
   module.exports = {
     getUserAccounts,
     getUserAccountById,
-    // createUserAccount,
+    createUserAccount,
     // updateUserAccount,
     deleteUserAccount,
   };
