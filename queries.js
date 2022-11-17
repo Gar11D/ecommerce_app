@@ -40,21 +40,21 @@ const getUserAccounts = (request, response) => {
     })
   };
 
-  // const updateUserAccount = (request, response) => {
-  //   const user_id = parseInt(request.params.id)
-  //   const { user_email } = request.body
+  const updateUserAccount = (request, response) => {
+    const user_id = parseInt(request.params.user_id);
+    const { user_email } = request.body
   
-  //   pool.query(
-  //     'UPDATE users SET user_email = $1, WHERE id = $2',
-  //     [user_email, user_id],
-  //     (error, results) => {
-  //       if (error) {
-  //         throw error
-  //       }
-  //       response.status(200).send(`User modified with ID: ${user_id}`)
-  //     }
-  //   )
-  // };
+    pool.query(
+      'UPDATE user_accounts SET user_email = $1 WHERE user_id = $2',
+      [user_email, user_id],
+      (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(`User modified with ID: ${user_id}`)
+      }
+    )
+  };
 
   const deleteUserAccount = (request, response) => {
     const id = parseInt(request.params.id)
@@ -71,6 +71,6 @@ const getUserAccounts = (request, response) => {
     getUserAccounts,
     getUserAccountById,
     createUserAccount,
-    // updateUserAccount,
+    updateUserAccount,
     deleteUserAccount,
   };

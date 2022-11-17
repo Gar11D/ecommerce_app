@@ -19,7 +19,7 @@ app.get('/', (request, response) => {
   app.get('/user_accounts', db.getUserAccounts);
   app.get('/user_accounts/:user_id', db.getUserAccountById);
   app.post('/user_accounts', db.createUserAccount);
-  // app.put('/user_accounts/:user_id', db.updateUserAccount);
+  app.put('/user_accounts/:user_id', db.updateUserAccount);
   app.delete('/user_accounts/:user_id', db.deleteUserAccount);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
