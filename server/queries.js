@@ -7,7 +7,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-//Get all user_accounts
+//GET all user_accounts
 
 const getUserAccounts = (request, response) => {
     pool.query('SELECT * FROM user_accounts ORDER BY user_id ASC', (error, results) => {
@@ -17,6 +17,8 @@ const getUserAccounts = (request, response) => {
       response.status(200).json(results.rows)
     })
   };
+
+//GET all user_accounts by ID
 
   const getUserAccountById = (request, response) => {
     const id = parseInt(request.params.user_id)
@@ -29,6 +31,8 @@ const getUserAccounts = (request, response) => {
     })
   };
 
+//CREATE a new user_account
+
   const createUserAccount = (request, response) => {
     const { user_id, user_email} = request.body
   
@@ -39,6 +43,8 @@ const getUserAccounts = (request, response) => {
       response.status(201).send(`User added with ID: ${results.rows[0].user_id}`)
     })
   };
+
+//UPDATE an existing user_account
 
   const updateUserAccount = (request, response) => {
     const user_id = parseInt(request.params.user_id);
@@ -55,6 +61,8 @@ const getUserAccounts = (request, response) => {
       }
     )
   };
+
+//DELETE a user_account
 
   const deleteUserAccount = (request, response) => {
     const id = parseInt(request.params.user_id)
